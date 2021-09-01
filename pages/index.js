@@ -7,7 +7,7 @@ export default function Home() {
 
   // Debug statements are useful for seeing when useSWR updates the profile during mutate vs. refetch
   console.log("Home Page");
-  console.log(profile); 
+  console.log(profile);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>{isError.message}</div>;
@@ -30,9 +30,11 @@ export default function Home() {
         <Button as="a" href="/api/auth/logout">Logout</Button>
       </Container>
     );
+  } else {
+    return (<Button as="a" href="/api/auth/login">Login</Button>);
   }
 
-  return <Button as="a" href="/api/auth/login">Login</Button>;
+  
 }
 
 const Container = styled.div`
