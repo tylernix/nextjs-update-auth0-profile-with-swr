@@ -24,18 +24,16 @@ export default function Edit() {
   }, [profile]);
   
   async function updateUserSession(formData) {
-    const newProfile = {
-      nickname: formData.nickname,
-      email: formData.email,
-      email_verified: formData.email_verified,
-      picture: formData.picture
-    }
+    // Update the local data at /api/auth/me immediately via mutate, and disable the useSWR revalidation (since we want to use the new cached version)
+    // NOTE: key is not required when using useSWR's mutate as it's pre-bound (https://swr.vercel.app/docs/mutation#bound-mutate)
+    mutate(async profile => {
+      profile.nickname = formData.nickname;
+      profile.email = formData.email;
+      profile.email_verified = formData.email_verified;
+      profile.picture = formData.picture;
+    }, false);
 
-    // Update the local data at /api/auth/me immediately, but disable the useSWR revalidation
-    // NOTE: key is not required when using useSWR's mutate as it's pre-bound
-    mutate({...newProfile}, false);
-
-    // Update the Auth0 profile too, but down await a response since we already cached the current values with useSWR mutate
+    // Update the Auth0 profile too, but dont await a response since we already cached the current values with useSWR mutate.
     updateProfile(formData);
     router.replace('/');
   }
