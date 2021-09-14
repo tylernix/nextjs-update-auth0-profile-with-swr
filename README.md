@@ -1,3 +1,5 @@
+# Update An Auth0 User Profile
+
 This is a [Next.js](https://nextjs.org/) project that allows a user to login and edit their [Auth0](https://auth0.com/) profile in the application using the [@auth0/nextjs-auth0](https://github.com/auth0/nextjs-auth0) SDK. When the user profile is edited and saved, the application does two things:
 1. Uses [SWR](https://swr.vercel.app/) (React hooks for data fetching) to cache the user edited values immediately for the endpoint `api/auth/me`. This makes the  "save" seem instant to the user. See `pages/edit.js` and `lib/user-profile.js` for more details.
 2. Sends an update request to the [Auth0 Management API](https://auth0.com/docs/api/management/v2) `/api/v2/users/{userid}` endpoint. Since this call takes about 1 second, this happens asynchronously in the background. See `pages/api/user.js` for more details. 
@@ -73,10 +75,13 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To learn more about Auth0, take a look at the following resources:
+
+- [Auth0 Next.js SDK](https://github.com/auth0/nextjs-auth0)
+- [The Ultimate Guide to Next.js Authentication with Auth0](https://auth0.com/blog/ultimate-guide-nextjs-authentication-auth0/)
+- [Auth0 User Profile Structure](https://auth0.com/docs/users/user-profiles/user-profile-structure)
+- [Get Management API Access Tokens For Production](https://auth0.com/docs/security/tokens/access-tokens/get-management-api-access-tokens-for-production)
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new).
