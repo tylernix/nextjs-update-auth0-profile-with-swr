@@ -8,7 +8,7 @@ When the user profile is edited and saved, the application does two things:
 
 ## 🎥 Action Video
 
-![nextjs-update-auth0-profile-with-swr](https://user-images.githubusercontent.com/67964959/133475065-b01c55bc-7b60-4956-ba22-36e95c680823.gif)
+![nextjs-auth0-swr-example](https://user-images.githubusercontent.com/67964959/133476469-1b42b919-996d-4f2b-8ae2-6bc2a4234b1b.gif)
 
 ## 🖥️ Live Demo
 
