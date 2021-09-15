@@ -6,8 +6,6 @@ When the user profile is edited and saved, the application does two things:
 1. Uses [SWR](https://swr.vercel.app/) (React hooks for data fetching) to cache the user edited values immediately for the endpoint `api/auth/me`. This makes the  "save" seem instant to the user. See `pages/edit.js` and `lib/user-profile.js` for more details.
 2. Sends an update request to the [Auth0 Management API](https://auth0.com/docs/api/management/v2) `/api/v2/users/{userid}` endpoint. Since this call takes about one second, this happens asynchronously in the background. See `pages/api/user.js` for more details.
 
-## 🎥 Action Video
-
 ![nextjs-auth0-swr-example](https://user-images.githubusercontent.com/67964959/133476469-1b42b919-996d-4f2b-8ae2-6bc2a4234b1b.gif)
 
 ## 🖥️ Live Demo
