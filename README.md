@@ -1,4 +1,4 @@
-# Update An Auth0 User Profile With SWR
+# Instant Auth0 User Profile Updates With SWR
 
 > A [Next.js](https://nextjs.org/) project that allows a user to login and edit their [Auth0](https://auth0.com/) profile directly in the application using the [@auth0/nextjs-auth0](https://github.com/auth0/nextjs-auth0) SDK. 
 
