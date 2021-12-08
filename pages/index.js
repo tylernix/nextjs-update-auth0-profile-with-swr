@@ -39,8 +39,8 @@ export default function Home() {
 
 const Container = styled.div`
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem
+  padding-left: 4rem;
+  padding-right: 4rem
 `;
 
 const Title = styled.h1`

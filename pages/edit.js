@@ -4,6 +4,8 @@ import { useProfile } from '../lib/user-profile';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
+import NProgress from 'nprogress';
+
 export default function Edit() {
   const router = useRouter();
 
@@ -40,6 +42,7 @@ export default function Edit() {
   }
   
   async function updateUserSession(formData) {
+    NProgress.start();
     // Update the local data at /api/auth/me immediately via mutate, and disable the useSWR revalidation (since we want to use the new cached version)
     // NOTE: key is not required when using useSWR's mutate as it's pre-bound (https://swr.vercel.app/docs/mutation#bound-mutate)
     mutate(async profile => {
@@ -51,13 +54,16 @@ export default function Edit() {
 
     // Update the Auth0 profile too, but dont await a response since we already cached the current values with useSWR mutate.
     updateProfile(formData);
+    NProgress.done();
     router.replace('/');
   }
 
 
   async function updateUserSessionWithoutSWR(formData) {
+    NProgress.start();
     // We must await a response since at the end of the updateProfile function, it calls /api/auth/refetch to update the local nextjs-auth0 cookie.
     await updateProfile(formData);
+    NProgress.done();
     router.replace('/');
   }
   
@@ -116,8 +122,8 @@ export default function Edit() {
 
 const Container = styled.div`
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem
+  padding-left: 4rem;
+  padding-right: 4rem
 `;
 
 const Label = styled.label`
