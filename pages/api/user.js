@@ -34,6 +34,7 @@ export default async function User(req, res) {
                 }).then(res => res.json())
 
                 // TODO: Need to write some error logic if Auth0 call fails (like when an email address already exists)
+                console.log(updatedUser);
 
                 // Return updated user
                 return res.status(200).json(updatedUser);

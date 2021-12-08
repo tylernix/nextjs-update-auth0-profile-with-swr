@@ -22,6 +22,22 @@ export default function Edit() {
 
     reset(profile);
   }, [profile]);
+
+  function getFormData() {
+    var newData = {
+      "nickname": document.getElementById('nickname').value,
+      "email": document.getElementById('email').value,
+      "email_verified": document.getElementById('email_verified').checked,
+      "picture": document.getElementById('picture').value
+    };
+    console.log(newData);
+    if (newData.email_verified == "on")
+      newData.email_verified = true;
+    if (newData.email_verified == "off")
+      newData.email_verified = false;
+    
+    return newData;
+  }
   
   async function updateUserSession(formData) {
     // Update the local data at /api/auth/me immediately via mutate, and disable the useSWR revalidation (since we want to use the new cached version)
@@ -54,33 +70,32 @@ export default function Edit() {
         <Title>
           Profile
         </Title>
-        <Picture {...register("picture")} src={profile?.picture}>
+        <Picture id="picture" {...register("picture")} src={profile?.picture}>
         </Picture>
-        <form onSubmit={handleSubmit((formData, e) => {
-            const buttonName = e.nativeEvent.submitter.name;
-            if (buttonName === "yesswr") {
-              updateUserSession(formData);
-            }
-            if (buttonName === "noswr") {
-              updateUserSessionWithoutSWR(formData);
-            }
-          })}> 
-          
-
+        <form> 
             <Label as="label">
                 <span>Nickname</span>
-                <input {...register("nickname")} type="text"></input>
+                <input id="nickname" {...register("nickname")} type="text"></input>
             </Label>
             <Label>
                 <span>Email</span>
-                <input {...register("email")} type="text"></input>
+                <input id="email" {...register("email")} type="text"></input>
             </Label>
             <Label>
                 <span>Verified</span>
-                <input {...register("email_verified")} type="checkbox"></input>
+                <input id="email_verified" {...register("email_verified")} type="checkbox"></input>
             </Label>
-            <PrimaryButton type="submit" name="yesswr">Save using SWR</PrimaryButton>
-            <Button type="submit" name="noswr">Save without SWR</Button>
+
+            <PrimaryButton name="yesswr" as="a" onClick={() => {
+              var newData = getFormData(); 
+              updateUserSession(newData);
+            }}>Save using SWR</PrimaryButton>
+
+            <Button name="noswr" as="a" onClick={() => {
+              var newData = getFormData(); 
+              updateUserSessionWithoutSWR(newData);
+            }}>Save without SWR</Button>
+
             <Button as="a" onClick={() => {
               reset();
               router.back();
