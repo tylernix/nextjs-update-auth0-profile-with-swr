@@ -1,10 +1,18 @@
-# Update An Auth0 User Profile
+# Update An Auth0 User Profile With SWR
 
-This is a [Next.js](https://nextjs.org/) project that allows a user to login and edit their [Auth0](https://auth0.com/) profile in the application using the [@auth0/nextjs-auth0](https://github.com/auth0/nextjs-auth0) SDK. When the user profile is edited and saved, the application does two things:
+> A [Next.js](https://nextjs.org/) project that allows a user to login and edit their [Auth0](https://auth0.com/) profile directly in the application using the [@auth0/nextjs-auth0](https://github.com/auth0/nextjs-auth0) SDK. 
+
+When the user profile is edited and saved, the application does two things:
 1. Uses [SWR](https://swr.vercel.app/) (React hooks for data fetching) to cache the user edited values immediately for the endpoint `api/auth/me`. This makes the  "save" seem instant to the user. See `pages/edit.js` and `lib/user-profile.js` for more details.
-2. Sends an update request to the [Auth0 Management API](https://auth0.com/docs/api/management/v2) `/api/v2/users/{userid}` endpoint. Since this call takes about 1 second, this happens asynchronously in the background. See `pages/api/user.js` for more details. 
+2. Sends an update request to the [Auth0 Management API](https://auth0.com/docs/api/management/v2) `/api/v2/users/{userid}` endpoint. Since this call takes about one second, this happens asynchronously in the background. See `pages/api/user.js` for more details.
 
-## Getting Started
+![nextjs-auth0-swr-example](https://user-images.githubusercontent.com/67964959/133476469-1b42b919-996d-4f2b-8ae2-6bc2a4234b1b.gif)
+
+## 🖥️ Live Demo
+
+[https://nextjs-update-auth0-profile-with-swr.vercel.app/](https://nextjs-update-auth0-profile-with-swr.vercel.app/)
+
+## 🚀 Getting Started
 
 ### Auth0 Configuration
 
@@ -68,7 +76,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js` or `pages/edit.js` or `pages/api/user.js`. The pages auto-update as you edit the files.
 
-## Learn More
+## 🔎 Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
